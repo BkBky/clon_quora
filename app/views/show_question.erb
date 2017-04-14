@@ -1,0 +1,45 @@
+<nav>
+  <ul>
+    <li><a href="#"><b><%= @user_login%></b></a>
+      <ul class="submenu">
+        <li><a href="#">Profile</a></li>
+        <li><a href="/logout">Close session</a></li>
+      </ul>
+    </li> 
+    <li><a href="#">Answer</a></li> 
+    <li><a href="/secret">Read</a></li>  
+  </ul>
+  <br clear="all">
+</nav>  
+<div> 
+    <% total_likes_ans = 0 %>
+    <% total_unlikes_ans = 0 %>
+    <% @quest_id.each do |quest|%>
+      <h4><%= quest.id %>. <%= quest.question %></h4>
+      <% quest.answers.each_with_index do |ans, index|%>
+        <p><%= index+1 %>. <%= ans.answer%></p>
+        <% ans.answer_votes.each do |vote|%>
+          SOy  like <%= vote.like %>
+          SOy unlike <%= vote.unlike %>
+          <% if vote.like == 1 %>
+            <% total_likes_ans +=1 %>
+          <% elsif vote.unlike == 1  %>
+            <% total_unlikes_ans +=1 %>
+          <%end%>
+        <% end%>
+        <a href="/like_ans/<%=quest.id%>"><button id="sesion" type="button">Like:<%= total_likes_ans %></button></a>   
+        <a href="/unlike_ans/<%=quest.id%>"><button id="sesion" type="button">Unlike: <%= total_unlikes_ans %></button></a><br> <br> 
+      <% end%>
+
+      <% total_likes_ans = 0 %>
+      <% total_unlikes_ans = 0 %>
+      
+      <form method="post" action="/create_answer/<%=quest.id %>">
+        <textarea placeholder="Escribe una respuesta" name="answer" cols="70"></textarea><br><br>
+        <input type="submit" value="Send answer">
+      </form>
+    
+    <% end%> <!-- end of iteration quest_d -->
+
+    
+</div>

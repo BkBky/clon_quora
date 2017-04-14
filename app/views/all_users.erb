@@ -1,0 +1,4 @@
+<h4>All Users from Quora</h4>
+<% @users.each_with_index do |user, index| %>
+  <%= index+1%>. <%= user.name %><br>
+<% end %>

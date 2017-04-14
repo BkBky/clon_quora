@@ -1,0 +1,16 @@
+<h4>Update your profile</h4>	
+<form action="/update/<%= @edit.id %>" method="post">
+
+    <p> Update your name </p>
+    <input name="name" type="text"  value="<%= @edit.name %>">
+    <br>
+    <p> Update your email </p>
+    <input name="email" type="text"  value="<%= @edit.email %>">
+    <br>
+    <p> Update your password</p>
+    <input name="password" type="text">
+    <br>
+    
+    <br><br>
+    <input type="submit" value="Update">
+</form>
